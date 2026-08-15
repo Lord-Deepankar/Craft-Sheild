@@ -15,8 +15,9 @@ public class PublicScanController {
         this.scanService = scanService;
     }
 
-    @GetMapping(" /api/scan/{id}")
+    @GetMapping(" /scan/{id}")
     public qrScanResponse getCraft(HttpServletRequest request , @PathVariable long id){
+        System.out.println("We got in the scan endpoint");
         String ip = request.getRemoteAddr();
         // IF THE STATUS IS COMPROMISED THEN IN FRONT SHE WILL HANDLE IT , CHECK THE FLAG AND INSTEAD OF craft details
         // SHE'LL DISPLAY A MESSAGE , saying , "Sorry Try again later"
