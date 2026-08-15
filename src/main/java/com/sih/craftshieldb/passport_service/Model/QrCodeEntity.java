@@ -1,7 +1,6 @@
 package com.sih.craftshieldb.passport_service.Model;
 
 
-import org.springframework.stereotype.Component;
 
 
 public class QrCodeEntity {

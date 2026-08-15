@@ -25,6 +25,7 @@ public class ScanSecurityService {
 
 
     public qrScanResponse getCraftDetails(String ip, long id) {
+
         Crafts craft = craftsRepo.findById(id).orElse(null);
         qrScanResponse response = new qrScanResponse();
         if (craft == null) {
@@ -36,6 +37,13 @@ public class ScanSecurityService {
         telemetryObj.setIpAddress(ip);
         telemetryObj.setScanTime(LocalDateTime.now());
         telemetryRepo.save(telemetryObj);
+
+
+        Crafts previousCraft = craftsRepo.findTopByCraftIdLessThanOrderByCraftIdDesc(craft.getCraftId());
+
+        String previousHash = (previousCraft != null)
+                ? previousCraft.getDataHash()
+                : "0000000000000000000000000000000000000000000000000000000000000000";
 
 
         int uniqueIps = velocityScan(craft.getCraftId());
@@ -52,7 +60,7 @@ public class ScanSecurityService {
 
             if ("AVAILABLE".equals(craft.getStatus())) {
 
-                if (IntegrityUtil.verifyIntegrity(craft, craft.getDataHash())) {
+                if (IntegrityUtil.verifyIntegrity(craft, craft.getDataHash(), previousHash)) {
                     // the craft data is intact
                     response.setArtistName(craft.getArtistName());
                     response.setHistory(craft.getHistory());

@@ -9,22 +9,25 @@ import java.security.MessageDigest;
 @Component
 public class IntegrityUtil {
 
-    public static String generateCraftHash(Crafts craft) {
+    public static String generateCraftHash(Crafts craft, String previousHash) {
+        String rawPayload;
+
         if (craft.getPayout() == null) {
-            String rawPayload = craft.getProductName() +
-                    craft.getArtistName() +
-                    craft.getFixedCost() +
-                    craft.getMaterialDetails();
-            return sha256(rawPayload);
-        }
-        else {
-            String rawPayload = craft.getProductName() +
+            rawPayload = craft.getProductName() +
                     craft.getArtistName() +
                     craft.getFixedCost() +
                     craft.getMaterialDetails() +
-                    craft.getPayout();
-            return sha256(rawPayload);
+                    previousHash;
+        } else {
+            rawPayload = craft.getProductName() +
+                    craft.getArtistName() +
+                    craft.getFixedCost() +
+                    craft.getMaterialDetails() +
+                    craft.getPayout() +
+                    previousHash;
         }
+
+        return sha256(rawPayload);
     }
 
     // Core SHA-256 execution method
@@ -46,8 +49,8 @@ public class IntegrityUtil {
     }
 
     // Simple verification check
-    public static boolean verifyIntegrity(Crafts craftFromDb, String storedHash) {
-        String currentComputedHash = generateCraftHash(craftFromDb);
+    public static boolean verifyIntegrity(Crafts craftFromDb, String storedHash, String lastEntryHash) {
+        String currentComputedHash = generateCraftHash(craftFromDb , lastEntryHash);
         return currentComputedHash.equals(storedHash);
     }
 }

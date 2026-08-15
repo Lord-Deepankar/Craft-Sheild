@@ -16,7 +16,7 @@ public class QrGenerator {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
         // Generate a 250x250 QR code matrix
-        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, 250, 250);
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, 512, 512);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 

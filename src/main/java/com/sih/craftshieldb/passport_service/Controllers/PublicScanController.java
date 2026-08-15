@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class PublicScanController {
 
@@ -17,7 +18,8 @@ public class PublicScanController {
     @GetMapping(" /api/scan/{id}")
     public qrScanResponse getCraft(HttpServletRequest request , @PathVariable long id){
         String ip = request.getRemoteAddr();
-        // IF THE STATUS IS COMPROMISED THEN IN FRONT SHE WILL HANDLE IT , CHECK THE FLAG AND INSTEAD OF QR SHE'LL DISPLAY A MESSAGE
+        // IF THE STATUS IS COMPROMISED THEN IN FRONT SHE WILL HANDLE IT , CHECK THE FLAG AND INSTEAD OF craft details
+        // SHE'LL DISPLAY A MESSAGE , saying , "Sorry Try again later"
         return scanService.getCraftDetails(ip,id);
 
     }
