@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 
 @Repository
-public interface scanTelemetryRepo extends JpaRepository<scanTelemetry, Integer> {
+public interface scanTelemetryRepo extends JpaRepository<scanTelemetry, Long> {
 
     @Query("SELECT COUNT(DISTINCT s.ipAddress) FROM scanTelemetry  s WHERE s.craftId = :craftId AND s.scanTime >= :oneHourAgo")
     int countDistinctIpByCraftIdAndScanTimeAfter(Long craftId, LocalDateTime oneHourAgo);

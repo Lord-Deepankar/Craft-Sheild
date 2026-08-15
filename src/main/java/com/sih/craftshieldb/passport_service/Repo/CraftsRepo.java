@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CraftsRepo extends JpaRepository<Crafts, Integer> {
+public interface CraftsRepo extends JpaRepository<Crafts,Long> {
 }
