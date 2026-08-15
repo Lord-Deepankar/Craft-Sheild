@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/artist")
 public class ArtisanController {
 
 
@@ -48,13 +48,13 @@ public class ArtisanController {
 
 
     // Map this endpoint to unsuspend button , by default the button will unsuspension
-    @PutMapping("craft/{id}/unsuspend")
+    @PutMapping("/craft/{id}/unsuspend")
     public Crafts unSuspend(@PathVariable Long id){
         return unSuspendingService.unsuspendCraft(id);
     }
 
     // Map this endpoint to sold out button for each product
-    @PutMapping("craft/{id}/sold")
+    @PutMapping("/craft/{id}/sold")
     public Crafts markAsSold(@PathVariable Long id){
         return soldOutService.markAsSold(id);
     }

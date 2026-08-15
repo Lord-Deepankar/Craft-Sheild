@@ -53,7 +53,7 @@ public class ScanSecurityService {
                 return response;
             }
 
-            if ("SOLD".equals(craft.getStatus())) {
+            if ("SOLD_OUT".equals(craft.getStatus())) {
                 response.setStatus("SOLD_OUT");
                 return response;
             }

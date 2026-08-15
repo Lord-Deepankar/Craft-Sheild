@@ -22,8 +22,8 @@ public class Crafts {
     @Column(length = 2000) // Making this larger for long histories
     private String history;
 
-    private Double fixedCost;
-    private Double payout; // Will be null if solo artist
+    private double fixedCost;
+    private double payout; // Will be null if solo artist
 
     private String status; // e.g., "AVAILABLE", "SOLD", "SUSPENDED"
     private String dataHash;

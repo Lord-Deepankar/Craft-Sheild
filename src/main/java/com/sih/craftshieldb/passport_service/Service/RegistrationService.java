@@ -19,7 +19,7 @@ public class RegistrationService {
 
     public QrCodeEntity registerCraft(Crafts product) throws Exception {
 
-
+        product.setStatus("AVAILABLE");
         Crafts lastCraft = craftsRepo.findTopByOrderByCraftIdDesc();
 
         String previousHash = (lastCraft != null)
@@ -29,7 +29,6 @@ public class RegistrationService {
 
         String hash = IntegrityUtil.generateCraftHash(product , previousHash);
         product.setDataHash(hash);
-        product.setStatus("AVAILABLE");
         craftsRepo.save(product);
 
 
