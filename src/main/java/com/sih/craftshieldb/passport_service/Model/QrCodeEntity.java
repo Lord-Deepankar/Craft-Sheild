@@ -8,6 +8,15 @@ public class QrCodeEntity {
     private String productName;
     private String qrCodeString;
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getQrCodeString() {
+        return qrCodeString;
+    }
+
+
     public void setProductName(String productName) {
         this.productName = productName;
     }

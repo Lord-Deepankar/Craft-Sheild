@@ -72,7 +72,7 @@ public class ScanSecurityService {
                 } else {
                     // send no data back to frontend in case of compromise or sold out
                     response.setStatus("COMPROMISED");
-                    craft.setStatus("SUSPENDED");
+                    craft.setStatus("COMPROMISED");
                     craftsRepo.save(craft);
                 }
                 return response;

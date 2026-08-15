@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class RegistrationService {
 
     private final CraftsRepo craftsRepo;
-    private QrCodeEntity qrCodeEntity = new QrCodeEntity();
+    private final QrCodeEntity qrCodeEntity = new QrCodeEntity();
     public RegistrationService(CraftsRepo craftsRepo) {
         this.craftsRepo = craftsRepo;
     }

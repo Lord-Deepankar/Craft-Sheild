@@ -1,6 +1,6 @@
 package com.sih.craftshieldb.passport_service.Model;
 
-import jakarta.persistence.Column;
+
 
 public class qrScanResponse {
 
