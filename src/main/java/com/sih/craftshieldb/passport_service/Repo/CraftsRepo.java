@@ -14,4 +14,6 @@ public interface CraftsRepo extends JpaRepository<Crafts,Long> {
     Crafts findTopByCraftIdLessThanOrderByCraftIdDesc(Long currentCraftId);
     List<Crafts> findByStatus(String status);
     List<Crafts> findByStatusNot(String status);
+    List<Crafts> findByArtistEmail(String artistEmail);
+    List<Crafts> findByArtistEmailAndStatus(String artistEmail, String status);
 }

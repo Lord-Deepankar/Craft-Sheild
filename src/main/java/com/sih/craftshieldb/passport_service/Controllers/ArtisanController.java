@@ -2,10 +2,8 @@ package com.sih.craftshieldb.passport_service.Controllers;
 
 import com.sih.craftshieldb.passport_service.Model.Crafts;
 import com.sih.craftshieldb.passport_service.Model.QrCodeEntity;
-import com.sih.craftshieldb.passport_service.Service.CraftFetchingService;
-import com.sih.craftshieldb.passport_service.Service.RegistrationService;
-import com.sih.craftshieldb.passport_service.Service.SoldOutService;
-import com.sih.craftshieldb.passport_service.Service.UnSuspendingService;
+import com.sih.craftshieldb.passport_service.Service.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +18,14 @@ public class ArtisanController {
     private final SoldOutService soldOutService;
     private final RegistrationService registrationService;
     private final CraftFetchingService craftFetchingService;
+    private final SearchService searchService;
 
-    public ArtisanController(UnSuspendingService unSuspendingService, SoldOutService soldOutService, RegistrationService registrationService, CraftFetchingService craftFetchingService) {
+    public ArtisanController(UnSuspendingService unSuspendingService, SoldOutService soldOutService, RegistrationService registrationService, CraftFetchingService craftFetchingService, SearchService searchService) {
         this.unSuspendingService = unSuspendingService;
         this.soldOutService = soldOutService;
         this.registrationService = registrationService;
         this.craftFetchingService = craftFetchingService;
+        this.searchService = searchService;
     }
 
     // suspended list table in frontend
@@ -44,6 +44,21 @@ public class ArtisanController {
     @PostMapping("/register")
     public QrCodeEntity registerProduct(@RequestBody Crafts product) throws Exception {
         return registrationService.registerCraft(product);
+    }
+
+
+    // TO BE USED FOR THE SEARCH BUTTON ON THE TOP OF CRAFTS TABLE
+    @GetMapping("/search")
+    public ResponseEntity<List<Crafts>> getCraftsByEmail(@RequestParam String email) {
+        List<Crafts> userCrafts = searchService.findByOwnerEmail(email);
+        return ResponseEntity.ok(userCrafts);
+    }
+
+    // TO BE USED FOR THE SEARCH BUTTON ON THE TOP OF SUSPENDED CRAFTS TABLE
+    @GetMapping("/suspended")
+    public ResponseEntity<List<Crafts>> getSuspendedProducts(@RequestParam String email) {
+        List<Crafts> suspendedCrafts = searchService.getSuspendedCraftsByEmail(email);
+        return ResponseEntity.ok(suspendedCrafts);
     }
 
 

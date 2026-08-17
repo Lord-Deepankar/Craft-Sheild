@@ -15,6 +15,7 @@ public class Crafts {
 
     private String artistName;
     private String productName;
+    private String artistEmail;
 
     @Column(length = 1000) // Making this larger for detailed descriptions
     private String materialDetails;
@@ -29,6 +30,14 @@ public class Crafts {
     private String dataHash;
 
     public void Craft() {
+    }
+
+    public String getArtistEmail() {
+        return artistEmail;
+    }
+
+    public void setArtistEmail(String artistEmail) {
+        this.artistEmail = artistEmail;
     }
     public String getDataHash() {
         return dataHash;
