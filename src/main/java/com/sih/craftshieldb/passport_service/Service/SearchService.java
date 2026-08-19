@@ -23,4 +23,8 @@ public class SearchService {
     public List<Crafts> getSuspendedCraftsByEmail(String email) {
         return craftsRepo.findByArtistEmailAndStatus(email,"SUSPENDED");
     }
+
+    public List<Crafts> getSoldOutCraftsByEmail(String email) {
+        return craftsRepo.findByArtistEmailAndStatus(email, "SOLD_OUT");
+    }
 }

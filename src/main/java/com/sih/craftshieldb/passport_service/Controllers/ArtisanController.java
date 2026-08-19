@@ -61,6 +61,12 @@ public class ArtisanController {
         return ResponseEntity.ok(suspendedCrafts);
     }
 
+    @GetMapping("/soldout")
+    public ResponseEntity<List<Crafts>> getSoldOutProducts(@RequestParam String email) {
+        List<Crafts> soldOutCrafts = searchService.getSoldOutCraftsByEmail(email);
+        return ResponseEntity.ok(soldOutCrafts);
+    }
+
 
     // Map this endpoint to unsuspend button , by default the button will unsuspension
     @PutMapping("/craft/{id}/unsuspend")
