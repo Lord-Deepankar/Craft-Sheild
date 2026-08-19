@@ -5,13 +5,17 @@ import com.sih.craftshieldb.passport_service.Model.QrCodeEntity;
 import com.sih.craftshieldb.passport_service.Repo.CraftsRepo;
 import com.sih.craftshieldb.passport_service.Utility.IntegrityUtil;
 import com.sih.craftshieldb.passport_service.Utility.QrGenerator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RegistrationService {
 
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
+    
     private final CraftsRepo craftsRepo;
-    private final QrCodeEntity qrCodeEntity = new QrCodeEntity();
+
     public RegistrationService(CraftsRepo craftsRepo) {
         this.craftsRepo = craftsRepo;
     }
@@ -35,8 +39,9 @@ public class RegistrationService {
         // put the url which the qr code will redirect bascially the endpoint to our PublicScanController endpoint
         // which will then do security check and return accordingly
         // below url is temporary one until we actually host the frontend
-        String url = "/api/scan/" + product.getCraftId();
+        String url = frontendUrl + "/product/" + product.getCraftId();
         String qrCodeString = QrGenerator.generateQrCodeBase64(url);
+        QrCodeEntity qrCodeEntity = new QrCodeEntity();
         qrCodeEntity.setProductName(product.getProductName());
         qrCodeEntity.setQrCodeString(qrCodeString);
         return qrCodeEntity;
