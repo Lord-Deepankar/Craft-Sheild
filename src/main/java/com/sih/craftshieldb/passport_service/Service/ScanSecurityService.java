@@ -16,11 +16,9 @@ public class ScanSecurityService {
 
     private final CraftsRepo craftsRepo;
     private final scanTelemetryRepo telemetryRepo;
-    private final scanTelemetry telemetryObj;
-    ScanSecurityService(CraftsRepo craftsRepo,  scanTelemetryRepo telemetryRepo, scanTelemetry telemetryObj){
+    ScanSecurityService(CraftsRepo craftsRepo,  scanTelemetryRepo telemetryRepo){
         this.craftsRepo = craftsRepo;
         this.telemetryRepo = telemetryRepo;
-        this.telemetryObj = telemetryObj;
     }
 
 
@@ -32,7 +30,7 @@ public class ScanSecurityService {
             response.setStatus("INVALID QR");
             return response;
         }
-
+        scanTelemetry telemetryObj = new scanTelemetry();
         telemetryObj.setCraftId(id);
         telemetryObj.setIpAddress(ip);
         telemetryObj.setScanTime(LocalDateTime.now());
