@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
+
 @Entity
 @Table(name = "scan_telemetry")
 public class scanTelemetry {

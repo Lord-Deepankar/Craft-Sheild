@@ -4,7 +4,7 @@ package com.sih.craftshieldb.passport_service.Model;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
-@Component
+
 @Entity
 public class Crafts {
 
