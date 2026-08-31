@@ -11,15 +11,15 @@ public class qrScanResponse {
     private String history;
     private String artistName;
 
-    public double getPayout() {
+    public Double getPayout() {
         return payout;
     }
 
-    public void setPayout(double payout) {
+    public void setPayout(Double payout) {
         this.payout = payout;
     }
 
-    private double payout;
+    private Double payout;
 
     public double getPrice() {
         return price;

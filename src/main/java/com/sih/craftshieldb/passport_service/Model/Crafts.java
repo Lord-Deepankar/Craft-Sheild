@@ -24,7 +24,7 @@ public class Crafts {
     private String history;
 
     private double fixedCost;
-    private double payout; // Will be null if solo artist
+    private Double payout; // Will be null if solo artist
 
     private String status; // e.g., "AVAILABLE", "SOLD", "SUSPENDED"
     private String dataHash;
