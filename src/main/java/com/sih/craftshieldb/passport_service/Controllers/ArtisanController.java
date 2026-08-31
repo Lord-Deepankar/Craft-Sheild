@@ -67,6 +67,9 @@ public class ArtisanController {
         return ResponseEntity.ok(soldOutCrafts);
     }
 
+    // adding another endpoint for the admin page product search done by artist using their name
+
+
 
     // Map this endpoint to unsuspend button , by default the button will unsuspension
     @PutMapping("/craft/{id}/unsuspend")

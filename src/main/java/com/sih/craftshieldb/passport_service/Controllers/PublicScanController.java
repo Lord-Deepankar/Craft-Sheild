@@ -15,6 +15,7 @@ public class PublicScanController {
         this.scanService = scanService;
     }
 
+    /*
     @GetMapping("/scan/{id}")
     public qrScanResponse getCraft(HttpServletRequest request , @PathVariable long id){
         String ip = request.getRemoteAddr();
@@ -22,6 +23,27 @@ public class PublicScanController {
         // SHE'LL DISPLAY A MESSAGE , saying , "Sorry Try again later"
         return scanService.getCraftDetails(ip,id);
 
+    }*/
+
+    @GetMapping("/scan/{id}")
+    public qrScanResponse getCraft(HttpServletRequest request , @PathVariable long id){
+        String ip = extractClientIp(request);
+        // IF THE STATUS IS COMPROMISED THEN IN FRONT SHE WILL HANDLE IT , CHECK THE FLAG AND INSTEAD OF craft details
+        // SHE'LL DISPLAY A MESSAGE , saying , "Sorry Try again later"
+        return scanService.getCraftDetails(ip,id);
+
+    }
+
+
+
+    private String extractClientIp(HttpServletRequest request) {
+        String forwardedFor = request.getHeader("X-Forwarded-For");
+        if (forwardedFor != null && !forwardedFor.isBlank()) {
+            // X-Forwarded-For can be a comma-separated chain of proxies;
+            // the first entry is the original client.
+            return forwardedFor.split(",")[0].trim();
+        }
+        return request.getRemoteAddr();
     }
 
 }
