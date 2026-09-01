@@ -66,6 +66,7 @@ public class ScanSecurityService {
                     response.setPrice(craft.getFixedCost());
                     response.setProductName(craft.getProductName());
                     response.setPayout(craft.getPayout());
+                    response.setArtistEmail(craft.getArtistEmail());
                     response.setStatus("SECURE");
                 } else {
                     // send no data back to frontend in case of compromise or sold out

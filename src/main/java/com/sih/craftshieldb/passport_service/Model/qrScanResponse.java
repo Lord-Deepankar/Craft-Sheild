@@ -10,6 +10,7 @@ public class qrScanResponse {
     private String materialDetails;
     private String history;
     private String artistName;
+    private String artistEmail;
 
     public Double getPayout() {
         return payout;
@@ -67,6 +68,13 @@ public class qrScanResponse {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+    public String getArtistEmail() {
+        return artistEmail;
+    }
+
+    public void setArtistEmail(String artistEmail) {
+        this.artistEmail = artistEmail;
     }
 
 }
